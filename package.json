@@ -6,14 +6,17 @@
   "scripts": {
     "tsc": "tsc",
     "build": "rm -rf build/ && tsc",
-    "prestart": "npm run build",
-    "start:prod": "node dist/index.js",
-    "start": "rm -rf build/ && tsc && node build/index.js",
+    "postinstall": "npm run build",
+    "start": "node build/index.js",
+    "start:prod": "rm -rf build/ && tsc && node build/index.js",
     "start:dev": "rm -rf build/ && tsc && nodemon build/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git@shresths.github.com:shresths/notepad-backend.git"
+  },
+  "engines": {
+    "node": "16.6.2"
   },
   "author": "",
   "license": "ISC",
