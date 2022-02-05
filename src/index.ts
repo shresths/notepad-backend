@@ -27,12 +27,13 @@ class Application {
 
   async process() {
     const app = express();
-    const PORT = process.env.APP_PORT || 5000;
+    const PORT = parseInt(process.env.APP_PORT) || 5000;
+    const HOST = '0.0.0.0';
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
-    app.listen(PORT, () => {
+    app.listen(PORT, HOST, () => {
       console.log(`App listening on port ${PORT}`);
     });
 
