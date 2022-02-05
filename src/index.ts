@@ -43,7 +43,7 @@ class Application {
     app.use('/load', this.loadRoute.getLoadRoute());
     app.use('/view', this.viewRoute.getViewRoute());
 
-    console.log('Anything is long as I can see your face');
+    console.log('Anything is long as I can see your face!');
   }
 }
 
