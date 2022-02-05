@@ -4,6 +4,7 @@
   "description": "This is test",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
     "build": "rm -rf build/ && tsc",
     "prestart": "npm run build",
     "start:prod": "node dist/index.js",
