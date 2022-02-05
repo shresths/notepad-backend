@@ -2,7 +2,7 @@ import 'reflect-metadata';
 require('dotenv').config();
 import Container, { Service } from 'typedi';
 import express from 'express';
-import { MongoService } from './services/mongo.service';
+import { MongoService } from './database/mongo.service';
 import { IndexRoute } from './routes/index';
 import { CreateRoute } from './routes/create';
 import { EditRoute } from './routes/edit';
