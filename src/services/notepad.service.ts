@@ -50,10 +50,16 @@ export class NotepadService {
         message: 'Note must contain either title or description',
       };
     }
-    if (typeof note.title != 'string' || typeof note.description != 'string') {
+    if (note.title && typeof note.title != 'string') {
       return {
         status: false,
-        message: 'title and description must be of type string',
+        message: 'title must be of type string',
+      };
+    }
+    if (note.description && typeof note.description != 'string') {
+      return {
+        status: false,
+        message: 'description must be of type string',
       };
     }
     return { status: true };
