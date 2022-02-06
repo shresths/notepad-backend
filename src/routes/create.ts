@@ -12,6 +12,7 @@ export class CreateRoute {
 
   getCreateRoute() {
     return this.createRoute.post(`/`, async (req: Request, res: Response) => {
+      console.log("ok", req.body)
       const noteData: BaseNote = req.body;
       const response = await this.notepadService.createNote(noteData);
       console.log('/ executed', response);
