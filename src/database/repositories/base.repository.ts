@@ -10,4 +10,5 @@ export abstract class BaseRepository<T> {
   findOne?(id: string): Promise<T>;
   pushOne?(model: IDatabaseModel): Promise<T>;
   updateOne?(model: IDatabaseModel): Promise<T>;
+  createOne?(data: any): Promise<T>;
 }

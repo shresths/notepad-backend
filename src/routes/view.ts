@@ -1,17 +1,21 @@
 import { Request, Response, Router } from 'express';
 import { Service } from 'typedi';
+import { NotepadService } from '../services/notepad.service';
 
 @Service()
 export class ViewRoute {
   viewRoute: Router;
-  constructor() {
+  constructor(private notepadService: NotepadService) {
     this.viewRoute = Router();
   }
 
   getViewRoute() {
-    return this.viewRoute.get(`/`, async (req: Request, res: Response) => {
-      console.log('/ executed');
-      res.status(200).send('This will be used o view a particular note');
+    return this.viewRoute.get(`/:id`, async (req: Request, res: Response) => {
+      const noteId = req.params.id;
+      const note = await this.notepadService.displayNote(noteId);
+      if (note) {
+        res.status(200).send(note);
+      }
     });
   }
 }

@@ -1,17 +1,23 @@
 import { Request, Response, Router } from 'express';
 import { Service } from 'typedi';
+import { Note } from '../database/models/notes.model';
+import { NotepadService } from '../services/notepad.service';
 
 @Service()
 export class EditRoute {
   editRoute: Router;
-  constructor() {
+  constructor(private notepadService: NotepadService) {
     this.editRoute = Router();
   }
 
   getEditRoute() {
-    return this.editRoute.put(`/`, async (req: Request, res: Response) => {
-      console.log('/ executed');
-      res.status(200).send('This will be used to edit the note');
+    return this.editRoute.put(`/:id`, async (req: Request, res: Response) => {
+      const noteId: string = req.params.id;
+      const noteData: Note = req.body.data;
+      if (noteId && noteData) {
+        const updateNote = await this.notepadService.updateNote(noteData);
+        res.status(200).send('Note has been updated');
+      }
     });
   }
 }

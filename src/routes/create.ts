@@ -12,11 +12,10 @@ export class CreateRoute {
 
   getCreateRoute() {
     return this.createRoute.post(`/`, async (req: Request, res: Response) => {
-      console.log("ok", req.body)
       const noteData: BaseNote = req.body;
-      const response = await this.notepadService.createNote(noteData);
-      console.log('/ executed', response);
-      if (response) {
+      const result = await this.notepadService.createNote(noteData);
+      console.log('/ executed', result);
+      if (result) {
         res.status(200).send('This will be used for creating the note');
       } else {
         res.status(503).send('Unsuccessful');
