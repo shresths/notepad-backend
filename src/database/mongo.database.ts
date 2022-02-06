@@ -8,10 +8,7 @@ import { Service } from 'typedi';
 @Service()
 export class MongoService {
   constructor() {}
-
-  /**
-   * Function to create connection with MongoDB
-   */
+  
   async createConnection(): Promise<void> {
     try {
       await mongoose

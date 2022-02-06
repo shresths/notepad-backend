@@ -7,9 +7,10 @@ import { NoteRepository } from '../database/repositories/note.repository';
 export class NotepadService {
   constructor(private noteRepository: NoteRepository) {}
 
-  //Add class validator
-  //Add error handling
   async createNote(note: BaseNote) {
+    if(!note.title && !note.description) {
+      return 'Note must contain either title or description';
+    }
     return this.noteRepository.createOne(note);
   }
 

@@ -10,8 +10,7 @@ export class IndexRoute {
 
   getIndexRoute() {
     return this.indexRoute.get(`/`, async (req: Request, res: Response) => {
-      console.log('/ executed');
-      res.status(200).send('Tell me, do you play?');
+      res.status(200).send('This is the Notepad Backend');
     });
   }
 }

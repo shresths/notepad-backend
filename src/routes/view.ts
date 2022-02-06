@@ -17,7 +17,7 @@ export class ViewRoute {
         if (note) {
           res.status(200).send(note);
         } else {
-          res.status(404).send({ error: 'Note not found' });
+          res.status(404).send({ error: 'Note not found', message: note });
         }
       } catch (e) {
         console.error('Error in viewing note', e);

@@ -3,7 +3,7 @@ import { BaseNote } from '../../abstractions/classes/baseNote';
 import { IDatabaseModel } from '../../abstractions/interfaces/database-model.interface';
 
 export class Note extends BaseNote implements IDatabaseModel {
-  @prop({ required: true })
+  @prop()
   title: string;
 
   @prop()
