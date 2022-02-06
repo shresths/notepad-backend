@@ -13,10 +13,13 @@ export class EditRoute {
   getEditRoute() {
     return this.editRoute.put(`/:id`, async (req: Request, res: Response) => {
       const noteId: string = req.params.id;
-      const noteData: Note = req.body.data;
+      const noteData: Note = req.body;
       if (noteId && noteData) {
-        const updateNote = await this.notepadService.updateNote(noteData);
-        res.status(200).send('Note has been updated');
+        const updateNote = await this.notepadService.updateNote(
+          noteId,
+          noteData
+        );
+        res.status(200).send(updateNote);
       }
     });
   }

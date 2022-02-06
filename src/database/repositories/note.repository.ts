@@ -22,10 +22,7 @@ export class NoteRepository extends BaseRepository<Note> {
     return await NoteModel.deleteOne({ _id: id });
   }
 
-  async updateOne(model: IDatabaseModel): Promise<any> {
-    return await NoteModel.updateOne(
-      { _id: model._id },
-      { $set: { title: model.title, description: model.description } }
-    );
+  async updateOne(id: string, model: IDatabaseModel): Promise<any> {
+    return await NoteModel.updateOne({ _id: id }, { $set: model });
   }
 }

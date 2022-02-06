@@ -30,7 +30,7 @@ export class NotepadService {
     return await this.noteRepository.deleteOne(id);
   }
 
-  async updateNote(model: Note) {
-    return await this.noteRepository.updateOne(model);
+  async updateNote(id: string, data: Note) {
+    return await this.noteRepository.updateOne(id, data);
   }
 }
