@@ -1,6 +1,6 @@
 import { Service } from 'typedi';
 import { IDatabaseModel } from '../../abstractions/interfaces/database-model.interface';
-import { MongoService } from '../mongo.service';
+import { MongoService } from '../mongo.database';
 
 @Service()
 export abstract class BaseRepository<T> {

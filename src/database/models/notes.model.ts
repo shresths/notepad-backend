@@ -8,12 +8,6 @@ export class Note extends BaseNote implements IDatabaseModel {
 
   @prop()
   description: string;
-
-  @prop()
-  createdAt: Date;
-
-  @prop()
-  updatedAt: Date;
 }
 
 export const NoteModel = getModelForClass(Note, {

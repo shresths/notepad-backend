@@ -2,7 +2,6 @@ import 'reflect-metadata';
 require('dotenv').config();
 import Container, { Service } from 'typedi';
 import express from 'express';
-import { MongoService } from './database/mongo.service';
 import { IndexRoute } from './routes/index';
 import { CreateRoute } from './routes/create';
 import { EditRoute } from './routes/edit';
@@ -13,7 +12,6 @@ import { ViewRoute } from './routes/view';
 @Service()
 class Application {
   constructor(
-    private mongoService: MongoService,
     private indexRoute: IndexRoute,
     private createRoute: CreateRoute,
     private editRoute: EditRoute,
@@ -21,7 +19,6 @@ class Application {
     private loadRoute: LoadRoute,
     private viewRoute: ViewRoute
   ) {
-    this.mongoService.createConnection();
     this.process();
   }
 
