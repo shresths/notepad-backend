@@ -25,7 +25,7 @@ export class NoteRepository extends BaseRepository<Note> {
   async getAllTitles() {
     try {
       return await NoteModel.find({}, { title: 1, _id: 1 }).sort({
-        createdAt: -1,
+        updatedAt: -1,
       });
     } catch (e) {
       console.error(e);

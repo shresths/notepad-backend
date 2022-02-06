@@ -11,8 +11,8 @@ export class EditRoute {
   }
 
   getEditRoute() {
-    try {
-      return this.editRoute.put(`/:id`, async (req: Request, res: Response) => {
+    return this.editRoute.put(`/:id`, async (req: Request, res: Response) => {
+      try {
         const noteId: string = req.params.id;
         const noteData: Note = req.body;
         if (noteId && noteData) {
@@ -31,9 +31,9 @@ export class EditRoute {
               .send({ error: 'Error in updating note', message: updateNote });
           }
         }
-      });
-    } catch (e) {
-      console.error('Error in updating note', e);
-    }
+      } catch (e) {
+        console.error('Error in updating note', e);
+      }
+    });
   }
 }

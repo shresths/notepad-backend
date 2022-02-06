@@ -10,10 +10,10 @@ export class DeleteRoute {
   }
 
   getDeleteRoute() {
-    try {
-      return this.deleteRoute.delete(
-        `/:id`,
-        async (req: Request, res: Response) => {
+    return this.deleteRoute.delete(
+      `/:id`,
+      async (req: Request, res: Response) => {
+        try {
           const noteId: string = req.params.id;
           const deleteResult = await this.notepadService.deleteNote(noteId);
           if (deleteResult && deleteResult.deletedCount) {
@@ -26,10 +26,10 @@ export class DeleteRoute {
               .status(404)
               .send({ error: 'Error in deleting note', message: deleteResult });
           }
+        } catch (e) {
+          console.error('Error in deleting notes', e);
         }
-      );
-    } catch (e) {
-      console.error('Error in deleting notes', e);
-    }
+      }
+    );
   }
 }

@@ -8,9 +8,8 @@ export class NotepadService {
   constructor(private noteRepository: NoteRepository) {}
 
   async createNote(note: BaseNote) {
-    if(!note.title && !note.description) {
-      return 'Note must contain either title or description';
-    }
+    const validateData = this.payloadValidation(note);
+    if (!validateData.status) return validateData.message;
     return this.noteRepository.createOne(note);
   }
 
@@ -39,6 +38,24 @@ export class NotepadService {
   }
 
   async updateNote(id: string, data: Note) {
+    const validateData = this.payloadValidation(data);
+    if (!validateData.status) return validateData.message;
     return this.noteRepository.updateOne(id, data);
+  }
+
+  payloadValidation(note: BaseNote) {
+    if (!note.title && !note.description) {
+      return {
+        status: false,
+        message: 'Note must contain either title or description',
+      };
+    }
+    if (typeof note.title != 'string' || typeof note.description != 'string') {
+      return {
+        status: false,
+        message: 'title and description must be of type string',
+      };
+    }
+    return { status: true };
   }
 }
