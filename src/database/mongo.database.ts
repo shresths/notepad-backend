@@ -3,14 +3,14 @@ import mongoose = require('mongoose');
 import { Service } from 'typedi';
 
 /**
- * Service to create mongo connection with a mongo db
+ * Service to create mongo connection with MongoDB
  */
 @Service()
 export class MongoService {
   constructor() {}
 
   /**
-   * Function to create connection with a mongo db
+   * Function to create connection with MongoDB
    */
   async createConnection(): Promise<void> {
     try {
@@ -18,7 +18,7 @@ export class MongoService {
         .connect(mongoConfig.host + mongoConfig.database)
         .then(() => console.log('Mongodb started!'));
     } catch (e) {
-      console.error(e);
+      console.error('Error in connecting database', e);
     }
   }
 }

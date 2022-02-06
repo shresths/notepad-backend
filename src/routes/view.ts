@@ -11,10 +11,16 @@ export class ViewRoute {
 
   getViewRoute() {
     return this.viewRoute.get(`/:id`, async (req: Request, res: Response) => {
-      const noteId = req.params.id;
-      const note = await this.notepadService.displayNote(noteId);
-      if (note) {
-        res.status(200).send(note);
+      try {
+        const noteId = req.params.id;
+        const note = await this.notepadService.displayNote(noteId);
+        if (note) {
+          res.status(200).send(note);
+        } else {
+          res.status(404).send({ error: 'Note not found' });
+        }
+      } catch (e) {
+        console.error('Error in viewing note', e);
       }
     });
   }

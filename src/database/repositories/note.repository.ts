@@ -5,24 +5,49 @@ import { IDatabaseModel } from '../../abstractions/interfaces/database-model.int
 @Service()
 export class NoteRepository extends BaseRepository<Note> {
   async findOne(id: string) {
-    return await NoteModel.findOne({ _id: id });
+    try {
+      return await NoteModel.findOne({ _id: id });
+    } catch (e) {
+      console.error(e);
+      return e;
+    }
   }
 
   async createOne(data: Note) {
-    return await NoteModel.create(data);
+    try {
+      return NoteModel.create(data);
+    } catch (e) {
+      console.error(e);
+      return e;
+    }
   }
 
   async getAllTitles() {
-    return await NoteModel.find({}, { title: 1, _id: 1 }).sort({
-      createdAt: -1,
-    });
+    try {
+      return await NoteModel.find({}, { title: 1, _id: 1 }).sort({
+        createdAt: -1,
+      });
+    } catch (e) {
+      console.error(e);
+      return e;
+    }
   }
 
   async deleteOne(id: string) {
-    return await NoteModel.deleteOne({ _id: id });
+    try {
+      return await NoteModel.deleteOne({ _id: id });
+    } catch (e) {
+      console.error(e);
+      return e;
+    }
   }
 
   async updateOne(id: string, model: IDatabaseModel): Promise<any> {
-    return await NoteModel.updateOne({ _id: id }, { $set: model });
+    try {
+      return await NoteModel.updateOne({ _id: id }, { $set: model });
+    } catch (e) {
+      console.error(e);
+      return e;
+    }
   }
 }

@@ -23,24 +23,26 @@ class Application {
   }
 
   async process() {
-    const app = express();
-    const PORT = parseInt(process.env.PORT) || 5000;
+    try {
+      const app = express();
+      const PORT = parseInt(process.env.PORT) || 5000;
 
-    app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
+      app.use(express.json());
+      app.use(express.urlencoded({ extended: true }));
 
-    app.listen(PORT, () => {
-      console.log(`App listening on port ${PORT}`);
-    });
+      app.listen(PORT, () => {
+        console.log(`App listening on port ${PORT}`);
+      });
 
-    app.use('/', this.indexRoute.getIndexRoute());
-    app.use('/create', this.createRoute.getCreateRoute());
-    app.use('/delete', this.deleteRoute.getDeleteRoute());
-    app.use('/edit', this.editRoute.getEditRoute());
-    app.use('/load', this.loadRoute.getLoadRoute());
-    app.use('/view', this.viewRoute.getViewRoute());
-
-    console.log('Anything is long as I can see your face!');
+      app.use('/', this.indexRoute.getIndexRoute());
+      app.use('/create', this.createRoute.getCreateRoute());
+      app.use('/delete', this.deleteRoute.getDeleteRoute());
+      app.use('/edit', this.editRoute.getEditRoute());
+      app.use('/load', this.loadRoute.getLoadRoute());
+      app.use('/view', this.viewRoute.getViewRoute());
+    } catch (e) {
+      console.error('Error in application', e);
+    }
   }
 }
 

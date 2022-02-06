@@ -10,27 +10,34 @@ export class NotepadService {
   //Add class validator
   //Add error handling
   async createNote(note: BaseNote) {
-    return await this.noteRepository.createOne(note);
+    return this.noteRepository.createOne(note);
   }
 
   async load() {
-    let titles = await this.noteRepository.getAllTitles();
-    const firstDocument = await this.noteRepository.findOne(titles[0]._id);
-    if (firstDocument) {
-      titles[0].description = firstDocument.description;
+    try {
+      let titles = await this.noteRepository.getAllTitles();
+      if (!titles[0]) {
+        return [];
+      }
+      const firstDocument = await this.noteRepository.findOne(titles[0]._id);
+      if (firstDocument) {
+        titles[0].description = firstDocument.description;
+      }
+      return titles;
+    } catch (e) {
+      console.error(e);
     }
-    return titles;
   }
 
   async displayNote(id: string) {
-    return await this.noteRepository.findOne(id);
+    return this.noteRepository.findOne(id);
   }
 
   async deleteNote(id: string) {
-    return await this.noteRepository.deleteOne(id);
+    return this.noteRepository.deleteOne(id);
   }
 
   async updateNote(id: string, data: Note) {
-    return await this.noteRepository.updateOne(id, data);
+    return this.noteRepository.updateOne(id, data);
   }
 }
